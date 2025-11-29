@@ -1,0 +1,86 @@
+Nesnelerin İnterneti (IoT) Cihazlarında Güvenlik Açıkları ve Korunma Yöntemleri
+Yazar : Yasin Yayın – 222212007 , Lisans Eğitimi, Düzce Üniversitesi Yönetim Bilişim Sistemleri Bölümü , Düzce , Türkiye
+Öz
+Bu çalışma, Nesnelerin İnterneti (IoT) cihazlarında yaygın olarak karşılaşılan güvenlik açıklarını ve bu açıkların giderilmesine yönelik çözüm önerilerini ele almaktadır. IoT cihazlarının artan kullanımıyla birlikte, varsayılan şifreler, güncellenmeyen yazılımlar, şifrelenmemiş veri iletimi gibi temel güvenlik zaafiyetleri daha büyük riskler oluşturmaktadır. Çalışmada ayrıca Wireshark ve Shodan gibi analiz araçlarıyla yapılan trafik incelemeleri, Mirai botnet saldırısı gibi vakalar üzerinden desteklenmiş; güvenlik politikaları, kullanıcı farkındalığı ve teknik önlemler bütüncül bir yaklaşımla değerlendirilmiştir. Amaç, hem bireysel hem kurumsal düzeyde IoT güvenliğini artırmaya yönelik uygulanabilir çözüm yolları sunmaktır.
+
+1. Giriş
+Nesnelerin İnterneti yani (IoT), fiziksel dünyadaki cihazların internet aracılığıyla birbirleriyle haberleşmesini sağlayan bir sistemler altyapısıdır. Günümüzde akıllı ev sistemleri , sağlık teknolojileri, şehir altyapıları ve sanayi üretiminde kullanılan yüz milyonlarca IoT cihazı, veri toplama ve otomasyon imkanları sayesinde yaşamı kolaylaştırmakta ve verimliliği artırmaktadır. Ancak bu yaygınlık, aynı zamanda ciddi güvenlik açıklarını da beraberinde getirmektedir (Weber, 2010).
+Bu cihazlar çoğunlukla sınırlı donanım kapasitesine sahip olduğundan dolayı, güçlü güvenlik sistemleriyle donatılmadan piyasaya sürülmektedir. Ayrıca varsayılan şifrelerle kullanılmaları, şifreleme desteğinin olmaması veya güncellenmemeleri gibi nedenlerle, ağ üzerinden yapılacak saldırılara karşı savunmasız hale gelmektedirler. 
+Bu çalışmada, IoT cihazlarında sıkça karşılaşılan güvenlik açıklarını ve bu açıkların doğurabileceği tehditleri incelemeye, bu açıkların nasıl ortaya çıktığını anlamaya ve bilimsel kaynaklara dayalı çözüm önerileri geliştirmeye çalışacağım. Amacım yalnızca sorunları tespit etmek değil, aynı zamanda kullanıcılar, üreticiler ve politika yapıcılar için uygulanabilir öneriler sunmak olacaktır. 
+ 
+2. IoT Cihazlarında Güvenlik Açıkları ve Korunma Yolları
+IoT cihazları, düşük maliyet ve kullanım kolaylığı ön planda tutularak üretildiğinden, güvenlik önlemleri çoğu zaman göz ardı edilmektedir. En yaygın güvenlik açıklarının başında, cihazların çözülmesi kolay şifrelerle kullanılması gelir. Örneğin birçok güvenlik kamerası hâlâ “admin:admin” gibi yaygın kullanıcı adı ve şifre kombinasyonlarıyla erişilebilir durumdadır (Anderson, 2020).
+Bir diğer önemli açık ise cihazların güncellenmemesidir. IoT cihazlarının firmware’leri, üreticiler tarafından nadiren güncellenmekte ya da kullanıcılar bu güncellemeleri ihmal etmektedir. Bu da bilinen zafiyetlerin uzun süre açık kalmasına neden olur (Bishop, 2003).
+ Aynı şekilde, şifrelenmemiş veri iletimi de yaygın bir risktir. Cihazlar, ağa gönderdikleri verileri çoğu zaman açık metin olarak ilettiğinden, bu durum saldırganlar tarafından ağ dinleme saldırılarıyla şifrelerinin kolay çözülmesine neden olabilir (Stallings, 2018).
+Ek olarak, birçok IoT cihazında güvenlik ayarlarının kullanıcıya bırakılması, teknik bilgi eksikliği olan kullanıcılar için bir risk yaratmaktadır. Fiziksel güvenlik de bu sistemlerin zayıf halkalarındandır. Açıkta çalışan cihazlara fiziksel erişim sağlandığında donanımsal müdahalelerle sistemin kontrolü tamamen ele geçirilebilir (ENISA, Threat Landscape for IoT, 2023).
+IoT cihazlarının güvenliğini artırmak için çeşitli teknik ve yönetsel çözümler uygulanabilir. En temel önlem, güçlü ve benzersiz parolaların kullanılmasıdır. Kullanıcılar, üreticinin sağladığı varsayılan şifreleri değiştirerek kaba kuvvet (brute-force) saldırılarını önleyebilirler (OWASP, 2023).
+Güncellemelerin düzenli yapılması da cihazların bilinen açıklar karşısında korunmasını sağlar. Firmware yazılımlarının üretici tarafından sağlanan son sürümleri düzenli olarak yüklenmelidir. Ayrıca, veri iletiminin güvenliği için SSL/TLS gibi şifreleme protokolleri kullanılmalı, ağ trafiği olabildiğince korumalı hale getirilmelidir (Stallings, 2018).
+Cihazların ağ içinde izole edilmesi, örneğin VLAN kullanılarak farklı segmentlerde tutulması, saldırı durumunda sistemin tamamının tehlikeye girmesini önler (Anderson, 2020).IDS/IPS gibi saldırı tespit ve engelleme sistemleri, IoT cihazlarının bağlı olduğu ağlarda anormal aktiviteleri belirlemeye yardımcı olur.
+Son olarak, kullanıcı farkındalığı artırılmalı; güvenli bağlantı noktaları, parola yönetimi, güncellemeler gibi konularda eğitimler verilmelidir. Unutulmamalıdır ki teknik önlemler kadar insan faktörü de güvenlik zincirinin kritik bir parçasıdır (ENISA, Threat Landscape for IoT, 2023).
+ 
+
+
+2.1 Gerçek Vaka Analizleri ve Güvenlik Uygulamaları
+Geçmişte yaşanan bazı vakalar, IoT cihazlarının güvenlik açıklarının ne kadar ciddi sonuçlar doğurabileceğini açıkça göstermektedir. 2016 yılında gerçekleşen Mirai Botnet saldırısı, yüz binlerce IoT cihazının (özellikle güvenlik kameralarının) varsayılan şifrelerle internete açık bırakılması sonucu, bu cihazların kötü amaçlı yazılımlar tarafından ele geçirilerek devasa DDoS saldırılarına alet edilmesiyle gerçekleşmiştir. Bu saldırı, internetin önemli parçalarını bir süreliğine erişilemez hale getirmiştir (Kolias, Kambourakis, Stavrou, & Gritzalis, 2017).
+Bir başka örnek, Ring güvenlik kameralarının ihlal edilmesidir. Zayıf parola uygulamaları ve iki faktörlü kimlik doğrulamanın eksikliği nedeniyle bazı kullanıcıların ev kameraları kötü niyetli kişiler tarafından ele geçirilmiş, cihazlar üzerinden sesli tehditler yapılmıştır (Feng, Ma, & Liu, 2020). Bu durum, sadece teknik değil psikolojik güvenliğin de ne kadar önemli olduğunu ortaya koymuştur.
+Güncel vakalardan biri de akıllı ev sistemlerinde görülen Zigbee protokolü üzerinden yapılan saldırılardır. Zigbee, birçok IoT cihazında kullanılan bir kablosuz iletişim protokolüdür. Bazı araştırmalarda, bu protokoldeki kimlik doğrulama eksiklikleri nedeniyle kötü niyetli yazılımların sisteme kolayca dahil olabildiği gösterilmiştir (Zillner & Strobl, 2015).
+Bu örneklerden çıkarılabilecek en önemli ders, sadece ağ seviyesi değil cihaz seviyesinde de güvenlik önlemlerinin alınmasının şart olduğudur. Aynı zamanda kullanıcı farkındalığı artırılmadan bu tür saldırıların önüne geçmek oldukça zordur. Bu nedenle güvenli şifre yönetimi, güncel firmware kullanımı, güvenli ağ protokolleri gibi uygulamalar sadece teknik personel değil tüm kullanıcılar için eğitim konusu haline gelmelidir.
+
+2.2 Trafik Analizi ve Simülasyon Uygulamaları
+IoT cihazlarında güvenlik zafiyetlerini tespit etmenin en etkili yöntemlerinden biri, cihazların oluşturduğu ağ trafiğinin detaylı bir şekilde analiz edilmesidir. Trafik analizi sayesinde, cihazların normal davranış kalıplarının dışına çıktığı durumlar tespit edilebilir; bu da potansiyel saldırıların erken fark edilmesine olanak tanır (Scarfone & Mell, 2007).
+ Özellikle saldırganların cihazlara kötü amaçlı yazılım yerleştirmesi veya cihazları botnet ağına dahil etmesi gibi durumlar, bu analizler sayesinde ortaya çıkarılabilir. Bu noktada kullanılan araçlardan biri olan Wireshark, gerçek zamanlı ağ trafiğini kaydederek, paketlerin protokollerini, kaynak-destinasyon IP bilgilerini ve gönderilen veri içeriklerini ayrıntılı biçimde görüntüleyebilmektedir.
+Pratik bir örnek vermek gerekirse, akıllı bir termostatın üretici sunucuları dışında başka bir IP adresine düzenli olarak veri göndermesi, cihazın potansiyel olarak zararlı bir yazılım tarafından ele geçirilmiş olabileceğini gösterir. Bu tür sapmalar, Wireshark gibi analiz yazılımlarıyla kolayca tespit edilebilir (Kumar, Tyagi, & Gupta, 2020).Ayrıca belirli portlara yönlendirilen olağan dışı trafik, cihazın dışarıya veri sızdırdığına veya dış komutları kabul ettiğine dair ipuçları verebilir.
+Trafik analizine ek olarak, IoT cihazlarının internete açık hâllerini tespit edebilmek için Shodan gibi özel tarama araçları kullanılmaktadır. Shodan, belirli portları açık olan cihazları IP adresi, cihaz türü, üretici markası ve yazılım sürümü gibi bilgilerle listeleyebilen bir arama motorudur (Shodan.io, 2024). Bu sayede dünyanın farklı bölgelerindeki zayıf yapılandırılmış cihazlara kolayca erişim sağlanabilmekte, kimlik doğrulama mekanizması olmayan ya da varsayılan şifrelerle çalışan cihazlar belirlenebilmektedir. Bu da bu tür cihazların saldırganlar açısından kolay hedefler hâline gelmesine neden olmaktadır.
+Simülasyon ortamları ise teorik bilgilerin pratikte test edilmesi açısından oldukça önemlidir. Bu bağlamda Raspberry Pi ya da Arduino gibi düşük maliyetli, açık kaynaklı donanımlar ile IoT senaryoları oluşturulabilir. Örneğin, Raspberry Pi’ye bağlı bir sıcaklık sensörü yardımıyla belirli aralıklarla veri üretilerek bu verilerin ağ üzerinden nasıl aktarıldığı analiz edilebilir. Bu veri akışı Wireshark üzerinden izlenerek veri paketlerinin şifrelenip şifrelenmediği, hangi sunucuya iletildiği ya da cihazın hangi protokolleri kullandığı detaylandırılabilir (Mendez Munoz, 2019).
+Ayrıca bu tür uygulamalar, yalnızca akademik çalışma yapanlar için değil, aynı zamanda üreticiler ve siber güvenlik uzmanları için de test ortamı oluşturur. Gerçek cihazları riske atmadan güvenlik testleri yapılabilir, yazılım yamaları denetlenebilir ve güvenlik açıklarına karşı alınacak önlemler test edilebilir. Bu da daha güvenli ve sürdürülebilir bir IoT sistemi inşa edilmesine katkı sağlar.
+ 
+
+Tablo 1: Wireshark ile Tespit Edilebilecek Bazı Anormal Trafik Türleri
+Anormal Trafik Türü	Açıklama
+Bilinmeyen IP’lere veri gönderilmesi	Cihazın dış saldırgan sunuculara veri göndermesi
+Sürekli ping isteği	Botnet içinde kullanılan cihazların davranışı
+Şifrelenmemiş veri	Hassas verilerin açık metin olarak iletilmesi
+Yetkisiz bağlantı denemesi	Brute-force giriş teşebbüsleri veya yetkisiz erişim girişimleri
+
+2.3 Örnek Vaka Analizi: Mirai Botnet Saldırısı
+IoT güvenliğinin ciddiyetini kavrayabilmek açısından Mirai botnet saldırısı, en sık referans verilen örneklerden biridir. 2016 yılında gerçekleşen bu saldırıda, binlerce IoT cihazı – özellikle güvenlik kameraları ve ağ geçitleri hedef alınmış ve zararlı bir yazılım (Mirai) ile kontrol altına alınmıştır (Anderson, 2020). Mirai, cihazların varsayılan kullanıcı adı ve şifrelerini tarayarak ele geçiriyor ve bu cihazları bir botnet ağına dahil ediyordu. Sonrasında bu ağ, devasa boyutta bir DDoS saldırısı düzenlemek için kullanıldı.
+Hedef alınan sistemlerden biri, büyük DNS hizmet sağlayıcısı Dyn'di. Bu saldırı sonucunda Twitter, Netflix, Reddit gibi birçok popüler siteye erişim saatlerce kesildi. Mirai'nin etkisi sadece teknik bir zafiyetin değil, aynı zamanda üretici firmaların güvenlik ihmalinin ve kullanıcıların bilinçsizliğinin bir sonucu olarak ortaya çıkmıştır (Bishop, 2003).
+Bu vaka, IoT cihazlarının sadece bireysel değil, küresel ölçekte hizmetlerin devamlılığını tehdit edebileceğini kanıtlamıştır. Bu bağlamda, IoT cihaz üreticilerinin zorunlu güvenlik güncellemeleri sunması, kullanıcıların cihazları varsayılan ayarlarla kullanmaktan kaçınması ve düzenleyici yapıcı sertifikasyon standartlarını zorunlu hale getirmesi bir ihtiyaçtır.
+2.4 Korunma İçin Öneriler ve Güvenlik Politikaları
+IoT cihazlarının güvenliğinin sağlanması, sadece donanımsal veya yazılımsal çözümlerle sınırlı değildir; aynı zamanda güçlü bir güvenlik politikası ve kullanıcı bilinci gerektirir. İlk adım, cihazlara ait fabrika çıkışlı varsayılan kullanıcı adı ve şifrelerin değiştirilmesidir. Çünkü birçok saldırı, bu tür zayıflıkları hedef alarak gerçekleştirilir (Alrawi, Lever, Antonakakis, & Monrose, 2019).
+Düzenli yazılım güncellemeleri ve firmware yamaları, cihazların bilinen açıklarının kapatılması açısından oldukça kritiktir. Birçok üretici güncellemeleri kullanıcının inisiyatifine bırakmakta, bu da ciddi güvenlik zaafiyetlerine yol açmaktadır. Bu nedenle güncellemelerin otomatik olarak yapılması önerilmektedir. Ayrıca ağ seviyesinde şifrelenmiş iletişim (TLS/SSL) tercih edilmeli ve IoT cihazlarının bulunduğu ağ segmenti izole edilmelidir (Fernandes, Jung, & Prakash, 2017).
+Trafik analizleri, IoT güvenliğinde önleyici bir rol oynar. Wireshark gibi araçlarla yapılan analizler sayesinde şüpheli trafikler tespit edilebilir. Örneğin, bir güvenlik kamerasının normalden fazla dış IP adresine bağlantı kurması, cihazın kötü niyetli bir botnete dahil olmuş olabileceğini gösterebilir. Bu tür analizler, olaylar gerçekleşmeden önce tehditleri ortaya çıkarma açısından büyük avantaj sağlar.
+Ayrıca kullanıcıların eğitimi de göz ardı edilmemelidir. Birçok saldırı, sosyal mühendislik gibi tekniklerle kullanıcıyı kandırarak gerçekleşmektedir. Bu nedenle IoT cihazlarının kurulum ve yönetimi sırasında kullanıcılara güçlü parola seçimi, bağlantı izinleri, erişim yetkileri gibi konularda bilinçlendirici içerikler sunulmalıdır (ENISA, IoT Security Recommendations, 2021).
+Son olarak, devlet düzeyinde ve endüstri standartlarında yayınlanan IoT güvenlik yönergeleri ve düzenlemeleri, üreticiler için bağlayıcı hale getirilmelidir. Avrupa Birliği’nin ENISA tarafından önerilen IoT güvenlik çerçevesi buna iyi bir örnektir.
+
+3. Sonuç
+Bu çalışma kapsamında, Nesnelerin İnterneti (IoT) cihazlarının güvenlik açıkları çok boyutlu bir şekilde incelenmiş, bu açıkların bireysel ve kurumsal düzeyde doğurabileceği riskler detaylı olarak analiz edilmiştir. Özellikle ev otomasyonu, akıllı güvenlik kameraları ve internet bağlantılı diğer cihazların, yetersiz kimlik doğrulama, güncellenmeyen yazılımlar, şifrelenmemiş veri iletimi ve fiziksel erişim zaafiyetleri gibi çeşitli güvenlik problemleriyle karşı karşıya kaldığı görülmüştür. Bu zafiyetler, yalnızca bireylerin özel hayatını tehdit etmekle kalmamakla beraber aynı zamanda büyük ölçekli botnet saldırılarına da zemin hazırlayabilmektedir.
+Güvenlik açıklarının bu kadar yaygın olmasının temel nedenlerinden biri, üretici firmaların cihazları piyasaya sürerken güvenliği önceliklendirmemesi ve kullanıcıların da farkındalık eksikliğiyle bu cihazları varsayılan ayarlarla kullanmaya devam etmesidir. Bu nedenle sadece teknik önlemler yeterli değildir. Kullanıcı eğitimi, düzenleyici kurumların denetimi ve zorunlu güvenlik standartlarının hayata geçirilmesi de en az teknik çözümler kadar önemlidir.
+IoT cihazlarının sunduğu faydaları güvenli bir şekilde kullanabilmek için hem üreticilerin hem kullanıcıların hem de üreticilerin birlikte hareket etmesi gerekmektedir. Aksi takdirde, teknoloji bize konfor sağlarken aynı zamanda özel hayatlarımızı ve ağlarımızı tehdit eden bir araca dönüşebilir. Bu bağlamda, bu çalışmada sunulan tespitler ve öneriler, IoT güvenliğini artırmaya yönelik gelecekteki çalışmalara katkı sunmayı amaçlamaktadır.
+Ek olarak bu çalışmada, literatürdeki akademik kaynakların yanı sıra Wireshark ve Shodan gibi araçların işleyiş biçimleri detaylı olarak incelenmiş, trafik analizi örnekleri üzerinden teorik düzeyde değerlendirme yapılmıştır. Ağ güvenliğine dair teorik bilgilerin, gerçek dünyadaki senaryolara nasıl uygulanabileceğini görmek, konuya olan ilgimi artırmış ve IoT güvenliğinin ne kadar kapsamlı bir disiplin olduğunu fark etmemi sağlamıştır.
+
+
+
+
+
+
+
+Kaynakça
+Alrawi, O., Lever, C., Antonakakis, M., & Monrose, F. (2019). SoK: Security Evaluation of Home-Based IoT Deployments. IEEE Symposium on Security and Privacy. 
+Anderson, R. (2020). Security Engineering: A Guide to Building Dependable Distributed Systems. Wiley.
+Antonakakis, M., April, T., Bailey, M., Bernhard, M., & Bursztein, E. (2017). Understanding the Mirai Botnet. USENIX Security Symposium. 
+Bishop, M. (2003). Computer Security: Art and Science. Addison-Wesley.
+ENISA. (2021). IoT Security Recommendations. ENISA: https://www.enisa.europa.eu adresinden alındı
+ENISA. (2023). Threat Landscape for IoT. ENISA: https://www.enisa.europa.eu adresinden alındı
+Feng, X., Ma, Z., & Liu, W. (2020). Security Analysis of Ring Camera Systems. IEEE Access, 8, s. 21334–21344.
+Fernandes, E., Jung, J., & Prakash, A. (2017). Security analysis of emerging smart home applications. IEEE Symposium on Security and Privacy. 
+Kara, H., & Özkaya, A. (2021). Akıllı Ev Sistemlerinde IoT Güvenlik Risklerinin Değerlendirilmesi. Gazi Bilişim Dergisi, 9(1), s. 45–53.
+Kolias, C., Kambourakis, G., Stavrou, A., & Gritzalis, S. (2017). DDoS in the IoT: Mirai and other botnets. Computer, 50(7), s. 80–84.
+Kumar, M., Tyagi, V., & Gupta, R. (2020). IoT Security: Challenges and Solutions. IEEE Access.
+OWASP. (2023). Top Ten IoT Vulnerabilities. OWASP: https://owasp.org/www-project-internet-of-things/ adresinden alındı
+Scarfone, K., & Mell, P. (2007). Guide to Intrusion Detection and Prevention Systems (IDPS). NIST Special Publication.
+Shodan.io. (2024). Search Engine for the Internet of Things. Shodan.io: https://www.shodan.io adresinden alındı
+Stallings, W. (2018). Cryptography and Network Security: Principles and Practice. Pearson.
+Weber, R. H. (2010). Internet of Things – New security and privacy challenges. Computer Law & Security Review, 26(1), s. 23–30.
+Zillner, T., & Strobl, S. (2015). ZigBee Exploited: The Good, the Bad and the Ugly. Black Hat USA. 
+
